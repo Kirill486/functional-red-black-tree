@@ -3,11 +3,13 @@
   "version": "1.0.1",
   "description": "A fully persistent balanced binary search tree",
   "main": "rbtree.js",
+  "typings": "./lib/main.d.ts",
   "directories": {
     "test": "test"
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/node": "^14.0.23",
     "iota-array": "^0.0.1",
     "tape": "^2.12.0"
   },
