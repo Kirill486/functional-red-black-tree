@@ -3,7 +3,7 @@ export enum Color {
     BLACK = 1,
 }
 
-export type key = number;
+export type nodeKey = number;
 
 export interface ITree<ValueType> {
     _compare: FunctionCompatator;
@@ -11,7 +11,7 @@ export interface ITree<ValueType> {
 }
 
 export interface INode<ValueType>{
-    key: key;
+    key: nodeKey;
     value: ValueType;
     left: INode<ValueType>;
     right: INode<ValueType>;
