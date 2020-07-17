@@ -1,5 +1,6 @@
 import { ITree, Color } from "./libraryDefinitions"
 import { cloneNode, recount, repaint, RBNode } from "./rbtreeNode"
+import { RedBlackTree } from "./rbtreeTree"
 
 //Iterator for red black tree
 export function RedBlackTreeIterator(tree: ITree<any>, stack) {
