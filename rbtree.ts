@@ -881,7 +881,7 @@ Object.defineProperty(iproto, "index", {
 })
 
 //Advances iterator to next element in list
-iproto.next = function() {
+iproto.next = function(): void {
   var stack = this._stack
   if(stack.length === 0) {
     return
@@ -904,7 +904,7 @@ iproto.next = function() {
 
 //Checks if iterator is at end of tree
 Object.defineProperty(iproto, "hasNext", {
-  get: function() {
+  get: function(): boolean {
     var stack = this._stack
     if(stack.length === 0) {
       return false
@@ -922,7 +922,7 @@ Object.defineProperty(iproto, "hasNext", {
 })
 
 //Update value
-iproto.update = function(value) {
+iproto.update = function(value): ITree<any> {
   var stack = this._stack
   if(stack.length === 0) {
     throw new Error("Can't update empty node!")
@@ -942,7 +942,7 @@ iproto.update = function(value) {
 }
 
 //Moves iterator backward one element
-iproto.prev = function() {
+iproto.prev = function(): void {
   var stack = this._stack
   if(stack.length === 0) {
     return
@@ -965,7 +965,7 @@ iproto.prev = function() {
 
 //Checks if iterator is at start of tree
 Object.defineProperty(iproto, "hasPrev", {
-  get: function() {
+  get: function(): boolean {
     var stack = this._stack
     if(stack.length === 0) {
       return false
@@ -983,7 +983,7 @@ Object.defineProperty(iproto, "hasPrev", {
 })
 
 //Default comparison function
-function defaultCompare(a, b) {
+function defaultCompare(a, b): -1 | 0 | 1 {
   if(a < b) {
     return -1
   }
