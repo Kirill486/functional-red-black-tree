@@ -7,9 +7,11 @@
     "declaration": true,
   },
   "include": [
-    "./rbtree.ts"
+    "./rbtree.ts",
+    "./**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }
