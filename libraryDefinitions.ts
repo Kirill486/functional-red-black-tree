@@ -5,6 +5,11 @@ export enum Color {
 
 export type key = number;
 
+export interface ITree<ValueType> {
+    _compare: FunctionCompatator;
+    root: INode<ValueType>;
+}
+
 export interface INode<ValueType>{
     key: key;
     value: ValueType;

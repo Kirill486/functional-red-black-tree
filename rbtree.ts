@@ -1,8 +1,9 @@
-import {Color, key, INode, NodeConstructo, FunctionCompatator, } from './libraryDefinitions';
+import {Color, key, INode, NodeConstructo, FunctionCompatator, ITree, } from './libraryDefinitions';
 
 "use strict"
 
 module.exports = createRBTree
+export {createRBTree};
 
 // var RED   = 0
 // var BLACK = 1
@@ -493,7 +494,7 @@ proto.get = function(key) {
 }
 
 //Iterator for red black tree
-function RedBlackTreeIterator(tree, stack) {
+function RedBlackTreeIterator(tree: ITree<any>, stack) {
   this.tree = tree
   this._stack = stack
 }
