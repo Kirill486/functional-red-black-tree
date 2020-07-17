@@ -1,4 +1,4 @@
-import {Color} from './libraryDefinitions';
+import {Color, key, INode, NodeConstructo, FunctionCompatator, } from './libraryDefinitions';
 
 "use strict"
 
@@ -7,7 +7,7 @@ module.exports = createRBTree
 // var RED   = 0
 // var BLACK = 1
 
-function RBNode(color: Color, key, value, left, right, count) {
+function RBNode<ValueType>(color: Color, key: key, value: ValueType, left: INode<any>, right: INode<any>, count) {
   this._color = color
   this.key = key
   this.value = value
@@ -17,18 +17,18 @@ function RBNode(color: Color, key, value, left, right, count) {
 }
 
 function cloneNode(node) {
-  return new RBNode(node._color, node.key, node.value, node.left, node.right, node._count)
+  return new RBNode(node._color, node.key, node.value, node.left, node.right, node._count) as INode<any>;
 }
 
 function repaint(color, node) {
-  return new RBNode(color, node.key, node.value, node.left, node.right, node._count)
+  return new RBNode(color, node.key, node.value, node.left, node.right, node._count) as INode<any>;
 }
 
 function recount(node) {
   node._count = 1 + (node.left ? node.left._count : 0) + (node.right ? node.right._count : 0)
 }
 
-function RedBlackTree(compare, root) {
+function RedBlackTree(compare: FunctionCompatator, root: INode<any>) {
   this._compare = compare
   this.root = root
 }
@@ -36,7 +36,7 @@ function RedBlackTree(compare, root) {
 var proto = RedBlackTree.prototype
 
 Object.defineProperty(proto, "keys", {
-  get: function() {
+  get: function(): key[] {
     var result = []
     this.forEach(function(k,v) {
       result.push(k)
@@ -57,7 +57,7 @@ Object.defineProperty(proto, "values", {
 
 //Returns the number of nodes in the tree
 Object.defineProperty(proto, "length", {
-  get: function() {
+  get: function(): INode<any> | 0 {
     if(this.root) {
       return this.root._count
     }
