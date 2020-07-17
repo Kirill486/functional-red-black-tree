@@ -10,6 +10,8 @@ export interface ITree<ValueType> {
     root: INode<ValueType>;
 }
 
+export type Stack<ValueType> = Array<INode<ValueType>>
+
 export interface INode<ValueType>{
     key: nodeKey;
     value: ValueType;

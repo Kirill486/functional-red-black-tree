@@ -1,9 +1,9 @@
-import { ITree, Color } from "./libraryDefinitions"
+import { ITree, Color, INode, Stack } from "./libraryDefinitions"
 import { cloneNode, recount, repaint, RBNode } from "./rbtreeNode"
 import { RedBlackTree } from "./rbtreeTree"
 
 //Iterator for red black tree
-export function RedBlackTreeIterator(tree: ITree<any>, stack) {
+export function RedBlackTreeIterator<ValueType>(tree: ITree<ValueType>, stack: Stack<ValueType>) {
     this.tree = tree
     this._stack = stack
   }
@@ -34,7 +34,7 @@ export function RedBlackTreeIterator(tree: ITree<any>, stack) {
   }
   
   //Swaps two nodes
-  function swapNode(n, v) {
+  function swapNode(n: INode<any>, v: INode<any>) {
     n.key = v.key
     n.value = v.value
     n.left = v.left

@@ -1,5 +1,5 @@
 import { RedBlackTreeIterator } from "./rbtreeIterator"
-import { Color, INode, nodeKey, FunctionCompatator, ITree } from "./libraryDefinitions"
+import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack } from "./libraryDefinitions"
 import { recount, repaint, RBNode } from "./rbtreeNode"
 
 export function RedBlackTree(compare: FunctionCompatator, root: INode<any>) {
@@ -308,8 +308,8 @@ export function RedBlackTree(compare: FunctionCompatator, root: INode<any>) {
     if(idx < 0) {
       return new RedBlackTreeIterator(this, [])
     }
-    var n = this.root
-    var stack = []
+    var n: INode<any> = this.root
+    var stack: Stack<any> = []
     while(true) {
       stack.push(n)
       if(n.left) {
