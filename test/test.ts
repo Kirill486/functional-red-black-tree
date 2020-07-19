@@ -14,10 +14,6 @@ function printTree(tree) {
   return [ COLORS[tree._color], tree.key, printTree(tree.left), printTree(tree.right) ]
 }
 
-// function print(t) {
-//   console.log(util.inspect(printTree(t.root), {depth:12}))
-// }
-
 //Ensures the red black axioms are satisfied by tree
 function checkTree(tree, t) {
   if(!tree.root) {
