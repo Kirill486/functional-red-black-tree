@@ -59,7 +59,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return 0
   }
 
-  insert = function(key: nodeKey, value: ValueType) {
+  insert = function(key: nodeKey, value: ValueType): ITree<ValueType> {
     var cmp = this._compare
     //Find point to insert new node at
     var n = this.root
@@ -464,6 +464,6 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
   
   //Build a tree
-export function createRBTree<ValueType>(compare: FunctionCompatator) {
+export function createRBTree<ValueType>(compare?: FunctionCompatator) {
   return new RedBlackTree<ValueType>(compare || defaultCompare, null);
 }
