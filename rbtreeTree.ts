@@ -1,7 +1,6 @@
 import { RedBlackTreeIterator } from "./rbtreeIterator"
-import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack, VisitFunction } from "./libraryDefinitions"
+import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack, VisitFunction, ComparisonResult } from "./libraryDefinitions"
 import { recount, repaint, RBNode } from "./rbtreeNode"
-import { ComparisonResult } from "./definitions";
 
 export class RedBlackTree<ValueType> implements ITree<ValueType> {
   _compare: FunctionCompatator;

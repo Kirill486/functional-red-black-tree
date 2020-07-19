@@ -1,4 +1,4 @@
-import { ComparisonResult } from "./definitions";
+export type ComparisonResult = -1 | 0 | 1;
 
 export enum Color {
     RED   = 0,
