@@ -11,7 +11,7 @@ export interface ITree<ValueType> {
     readonly _compare: FunctionCompatator;
     root: INode<ValueType>;
 
-    forEach: (visit: VisitFunction, lo?: ValueType, hi?: ValueType) => any;
+    forEach: (visit: VisitFunction, lo?: nodeKey, hi?: nodeKey) => any;
 
     readonly keys: nodeKey[];
     readonly values: ValueType[];
@@ -21,7 +21,7 @@ export interface ITree<ValueType> {
 
     get: (key: nodeKey) => ValueType;
     insert: (key: nodeKey, value: ValueType) => ITree<ValueType>;
-    remove: (key: nodeKey) => void;
+    remove: (key: nodeKey) => ITree<ValueType>;
 
     at: (idx: number) => IIterator<ValueType>;
     ge: (key: nodeKey) => IIterator<ValueType>;
@@ -43,6 +43,9 @@ export interface INode<ValueType>{
 }
 
 export interface IIterator<ValueType> {
+    tree: ITree<ValueType>;
+    _stack: Stack<ValueType>
+
     readonly valid: boolean;
     readonly node: INode<ValueType>;
     readonly key: number;
@@ -58,5 +61,5 @@ export interface IIterator<ValueType> {
     next: () => void;
 }
 
-export type FunctionCompatator = <ValueType>(a: ValueType, b: ValueType) => ComparisonResult;
+export type FunctionCompatator = (a: number, b: number) => ComparisonResult;
 export type VisitFunction = <ValueType>(key: nodeKey, value: ValueType) => any;
