@@ -1,3 +1,5 @@
+import { ComparisonResult } from "./definitions";
+
 export enum Color {
     RED   = 0,
     BLACK = 1,
@@ -9,7 +11,7 @@ export interface ITree<ValueType> {
     readonly _compare: FunctionCompatator;
     root: INode<ValueType>;
 
-    forEach: any;
+    forEach: (visit: VisitFunction, lo?: ValueType, hi?: ValueType) => any;
 
     readonly keys: nodeKey[];
     readonly values: ValueType[];
@@ -56,4 +58,5 @@ export interface IIterator<ValueType> {
     next: () => void;
 }
 
-export type FunctionCompatator = <ValueType>(a: ValueType, b: ValueType) => -1 | 0 | 1;
+export type FunctionCompatator = <ValueType>(a: ValueType, b: ValueType) => ComparisonResult;
+export type VisitFunction = <ValueType>(key: nodeKey, value: ValueType) => any;

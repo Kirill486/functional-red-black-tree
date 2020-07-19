@@ -1,6 +1,7 @@
 import { RedBlackTreeIterator } from "./rbtreeIterator"
-import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack } from "./libraryDefinitions"
+import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack, VisitFunction } from "./libraryDefinitions"
 import { recount, repaint, RBNode } from "./rbtreeNode"
+import { ComparisonResult } from "./definitions";
 
 export class RedBlackTree<ValueType> implements ITree<ValueType> {
   _compare: FunctionCompatator;
@@ -11,11 +12,14 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     this.root = root
   }
 
-  forEach = function rbTreeForEach(visit, lo?: any, hi?: any) {
+  forEach(visit: VisitFunction, lo?: ValueType, hi?: ValueType) {
     if(!this.root) {
       return
     }
-    switch(arguments.length) {
+
+    const argumentsLength = hi && lo && 3 || lo && 2 || 1;
+    
+    switch(argumentsLength) {
       case 1:
         return doVisitFull(visit, this.root)
       break
@@ -430,7 +434,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
   
   //Visit all nodes within a range
-  function doVisit(lo, hi, compare, visit, node) {
+  function doVisit<ValueType>(lo: ValueType, hi: ValueType, compare: FunctionCompatator, visit: VisitFunction, node) {
     var l = compare(lo, node.key)
     var h = compare(hi, node.key)
     var v
@@ -450,7 +454,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
   
   //Default comparison function
-  function defaultCompare(a, b): -1 | 0 | 1 {
+  function defaultCompare(a, b): ComparisonResult {
     if(a < b) {
       return -1
     }
