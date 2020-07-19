@@ -56,5 +56,4 @@ export interface IIterator<ValueType> {
     next: () => void;
 }
 
-export type NodeConstructo<ValueType> = new (...args: any[]) => INode<ValueType>;
-export type FunctionCompatator = any;
+export type FunctionCompatator = <ValueType>(a: ValueType, b: ValueType) => -1 | 0 | 1;
