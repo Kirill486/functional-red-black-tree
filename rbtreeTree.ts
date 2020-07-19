@@ -467,6 +467,6 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
   
   //Build a tree
-export function createRBTree<ValueType>(compare?: FunctionCompatator) {
+export const createRBTree = <ValueType>(compare?: FunctionCompatator) => {
   return new RedBlackTree<ValueType>(compare || defaultCompare, null);
 }
