@@ -16,8 +16,8 @@ export interface ITree<ValueType> {
     readonly keys: nodeKey[];
     readonly values: ValueType[];
     readonly length: number;
-    readonly begin: INode<ValueType>;
-    readonly end: INode<ValueType>;
+    readonly begin: IIterator<ValueType>;
+    readonly end: IIterator<ValueType>;
 
     get: (key: nodeKey) => ValueType;
     insert: (key: nodeKey, value: ValueType) => ITree<ValueType>;

@@ -1,5 +1,5 @@
 import { RedBlackTreeIterator } from "./rbtreeIterator"
-import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack, VisitFunction, ComparisonResult } from "./libraryDefinitions"
+import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack, VisitFunction, ComparisonResult, IIterator } from "./libraryDefinitions"
 import { recount, repaint, RBNode } from "./rbtreeNode"
 
 export class RedBlackTree<ValueType> implements ITree<ValueType> {
@@ -233,7 +233,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
         stack.push(n)
         n = n.left
       }
-    return new RedBlackTreeIterator<ValueType>(this, stack)
+    return new RedBlackTreeIterator<ValueType>(this, stack) as IIterator<ValueType>;
   }
 
   get end() {
@@ -243,7 +243,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       stack.push(n)
       n = n.right
     }
-    return new RedBlackTreeIterator<ValueType>(this, stack)
+    return new RedBlackTreeIterator<ValueType>(this, stack) as IIterator<ValueType>;
   }
 
   at(idx: number) {
