@@ -76,13 +76,13 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       }
     }
     //Rebuild path to leaf node
-    n_stack.push(new RBNode(Color.RED, key, value, null, null, 1))
+    n_stack.push(new RBNode<ValueType>(Color.RED, key, value, null, null, 1))
     for(var s=n_stack.length-2; s>=0; --s) {
       var n = n_stack[s]
       if(d_stack[s] <= 0) {
-        n_stack[s] = new RBNode(n._color, n.key, n.value, n_stack[s+1], n.right, n._count+1)
+        n_stack[s] = new RBNode<ValueType>(n._color, n.key, n.value, n_stack[s+1], n.right, n._count+1)
       } else {
-        n_stack[s] = new RBNode(n._color, n.key, n.value, n.left, n_stack[s+1], n._count+1)
+        n_stack[s] = new RBNode<ValueType>(n._color, n.key, n.value, n.left, n_stack[s+1], n._count+1)
       }
     }
     //Rebalance tree using rotations
@@ -230,7 +230,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
         stack.push(n)
         n = n.left
       }
-    return new RedBlackTreeIterator(this, stack)
+    return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
   get end() {
@@ -240,12 +240,12 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       stack.push(n)
       n = n.right
     }
-    return new RedBlackTreeIterator(this, stack)
+    return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
   at(idx: number) {
     if(idx < 0) {
-      return new RedBlackTreeIterator(this, [])
+      return new RedBlackTreeIterator<ValueType>(this, [])
     }
     var n: INode<any> = this.root
     var stack: Stack<any> = []
@@ -259,7 +259,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
         idx -= n.left._count
       }
       if(!idx) {
-        return new RedBlackTreeIterator(this, stack)
+        return new RedBlackTreeIterator<ValueType>(this, stack)
       }
       idx -= 1
       if(n.right) {
@@ -271,7 +271,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
         break
       }
     }
-    return new RedBlackTreeIterator(this, [])
+    return new RedBlackTreeIterator<ValueType>(this, [])
   }
 
   ge(key: nodeKey) {
@@ -292,7 +292,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       }
     }
     stack.length = last_ptr
-    return new RedBlackTreeIterator(this, stack)
+    return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
   gt(key) {
@@ -313,7 +313,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       }
     }
     stack.length = last_ptr
-    return new RedBlackTreeIterator(this, stack)
+    return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
   lt(key) {
@@ -334,7 +334,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       }
     }
     stack.length = last_ptr
-    return new RedBlackTreeIterator(this, stack)
+    return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
   le(key) {
@@ -355,7 +355,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       }
     }
     stack.length = last_ptr
-    return new RedBlackTreeIterator(this, stack)
+    return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
   find(key) {
@@ -366,7 +366,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       var d = cmp(key, n.key)
       stack.push(n)
       if(d === 0) {
-        return new RedBlackTreeIterator(this, stack)
+        return new RedBlackTreeIterator<ValueType>(this, stack)
       }
       if(d <= 0) {
         n = n.left
@@ -374,7 +374,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
         n = n.right
       }
     }
-    return new RedBlackTreeIterator(this, [])
+    return new RedBlackTreeIterator<ValueType>(this, [])
   }
 
   remove(key): ITree<ValueType> {
@@ -465,5 +465,5 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   
   //Build a tree
 export function createRBTree<ValueType>(compare: FunctionCompatator) {
-  return new RedBlackTree(compare || defaultCompare, null) as ITree<ValueType>;
+  return new RedBlackTree<ValueType>(compare || defaultCompare, null);
 }

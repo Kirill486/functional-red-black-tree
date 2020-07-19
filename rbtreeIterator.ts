@@ -25,7 +25,7 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
   }
 
   public clone(): RedBlackTreeIterator<ValueType> {
-    return new RedBlackTreeIterator(this.tree, this._stack.slice());
+    return new RedBlackTreeIterator<ValueType>(this.tree, this._stack.slice());
   }
 
   public remove(): ITree<ValueType> {
@@ -36,13 +36,13 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
     //First copy path to node
     var cstack = new Array(stack.length)
     var n = stack[stack.length-1]
-    cstack[cstack.length-1] = new RBNode(n._color, n.key, n.value, n.left, n.right, n._count)
+    cstack[cstack.length-1] = new RBNode<ValueType>(n._color, n.key, n.value, n.left, n.right, n._count)
     for(var i=stack.length-2; i>=0; --i) {
       var n = stack[i]
       if(n.left === stack[i+1]) {
-        cstack[i] = new RBNode(n._color, n.key, n.value, cstack[i+1], n.right, n._count)
+        cstack[i] = new RBNode<ValueType>(n._color, n.key, n.value, cstack[i+1], n.right, n._count)
       } else {
-        cstack[i] = new RBNode(n._color, n.key, n.value, n.left, cstack[i+1], n._count)
+        cstack[i] = new RBNode<ValueType>(n._color, n.key, n.value, n.left, cstack[i+1], n._count)
       }
     }
   
@@ -63,14 +63,14 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
       }
       //Copy path to leaf
       var v = cstack[split-1]
-      cstack.push(new RBNode(n._color, v.key, v.value, n.left, n.right, n._count))
+      cstack.push(new RBNode<ValueType>(n._color, v.key, v.value, n.left, n.right, n._count))
       cstack[split-1].key = n.key
       cstack[split-1].value = n.value
   
       //Fix up stack
       for(var i=cstack.length-2; i>=split; --i) {
         n = cstack[i]
-        cstack[i] = new RBNode(n._color, n.key, n.value, n.left, cstack[i+1], n._count)
+        cstack[i] = new RBNode<ValueType>(n._color, n.key, n.value, n.left, cstack[i+1], n._count)
       }
       cstack[split-1].left = cstack[split]
     }
@@ -91,7 +91,7 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
       for(var i=0; i<cstack.length; ++i) {
         cstack[i]._count--
       }
-      return new RedBlackTree(this.tree._compare, cstack[0])
+      return new RedBlackTree<ValueType>(this.tree._compare, cstack[0])
     } else {
       if(n.left || n.right) {
         //Second easy case:  Single child black parent
@@ -106,11 +106,11 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
         for(var i=0; i<cstack.length-1; ++i) {
           cstack[i]._count--
         }
-        return new RedBlackTree(this.tree._compare, cstack[0])
+        return new RedBlackTree<ValueType>(this.tree._compare, cstack[0])
       } else if(cstack.length === 1) {
         //Third easy case: root
         //console.log("ROOT")
-        return new RedBlackTree(this.tree._compare, null)
+        return new RedBlackTree<ValueType>(this.tree._compare, null)
       } else {
         //Hard case: Repaint n, and then do some nasty stuff
         //console.log("BLACK leaf no children")
@@ -127,7 +127,7 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
         }
       }
     }
-    return new RedBlackTree(this.tree._compare, cstack[0])
+    return new RedBlackTree<ValueType>(this.tree._compare, cstack[0])
   }
 
   // enumerable: true
@@ -212,16 +212,16 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
     }
     var cstack = new Array(stack.length)
     var n = stack[stack.length-1]
-    cstack[cstack.length-1] = new RBNode(n._color, n.key, value, n.left, n.right, n._count)
+    cstack[cstack.length-1] = new RBNode<ValueType>(n._color, n.key, value, n.left, n.right, n._count)
     for(var i=stack.length-2; i>=0; --i) {
       n = stack[i]
       if(n.left === stack[i+1]) {
-        cstack[i] = new RBNode(n._color, n.key, n.value, cstack[i+1], n.right, n._count)
+        cstack[i] = new RBNode<ValueType>(n._color, n.key, n.value, cstack[i+1], n.right, n._count)
       } else {
-        cstack[i] = new RBNode(n._color, n.key, n.value, n.left, cstack[i+1], n._count)
+        cstack[i] = new RBNode<ValueType>(n._color, n.key, n.value, n.left, cstack[i+1], n._count)
       }
     }
-    return new RedBlackTree(this.tree._compare, cstack[0])
+    return new RedBlackTree<ValueType>(this.tree._compare, cstack[0])
   }
 
   public prev(): void {
@@ -273,7 +273,7 @@ function swapNode(n: INode<any>, v: INode<any>) {
 }
   
 //Fix up a double black node in a tree
-function fixDoubleBlack(stack) {
+function fixDoubleBlack(stack: Stack<any>) {
     var n, p, s, z
     for(var i=stack.length-1; i>=0; --i) {
       n = stack[i]
