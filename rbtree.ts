@@ -1,7 +1,6 @@
 import {createRBTree} from './rbtreeTree';
-import { ExampleClass } from './exampleClass';
 
 "use strict"
 
-export {createRBTree, ExampleClass};
+export {createRBTree};
 module.exports = createRBTree
