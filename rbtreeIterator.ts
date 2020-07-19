@@ -5,7 +5,7 @@ import { RedBlackTree } from "./rbtreeTree"
 //Iterator for red black tree
 export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
   tree: ITree<ValueType>;
-  private _stack: Stack<ValueType>
+  _stack: Stack<ValueType>
   
   constructor (tree: ITree<ValueType>, stack: Stack<ValueType>) {
     this.tree = tree;
@@ -24,7 +24,7 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
     return null;
   }
 
-  public clone(): RedBlackTreeIterator<ValueType> {
+  public clone(): IIterator<ValueType> {
     return new RedBlackTreeIterator<ValueType>(this.tree, this._stack.slice());
   }
 

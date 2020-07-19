@@ -11,12 +11,15 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     this.root = root
   }
 
-  forEach(visit: VisitFunction, lo?: ValueType, hi?: ValueType) {
+  forEach(visit: VisitFunction, lo?: nodeKey, hi?: nodeKey) {
     if(!this.root) {
       return
     }
 
-    const argumentsLength = hi && lo && 3 || lo && 2 || 1;
+    const argumentsLength =
+      (typeof hi === "number") && (typeof lo === "number") && 3 ||
+      (typeof lo === "number") && 2 ||
+      1;
     
     switch(argumentsLength) {
       case 1:
@@ -220,7 +223,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     }
     //Return new tree
     n_stack[0]._color = Color.BLACK
-    return new RedBlackTree(cmp, n_stack[0]) as ITree<ValueType>;
+    return new RedBlackTree(cmp, n_stack[0]);
   }
   
   get begin() {
@@ -385,7 +388,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return this
   }
 
-  get(key: nodeKey) {
+  get(key: nodeKey): ValueType {
     var cmp = this._compare
     var n = this.root
     while(n) {
@@ -417,7 +420,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
   
   //Visit half nodes in order
-  function doVisitHalf(lo, compare, visit, node) {
+  function doVisitHalf<ValueType>(lo: nodeKey, compare: FunctionCompatator, visit: VisitFunction, node: INode<ValueType>) {
     var l = compare(lo, node.key)
     if(l <= 0) {
       if(node.left) {
@@ -433,7 +436,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
   
   //Visit all nodes within a range
-  function doVisit<ValueType>(lo: ValueType, hi: ValueType, compare: FunctionCompatator, visit: VisitFunction, node) {
+  function doVisit<ValueType>(lo: nodeKey, hi: nodeKey, compare: FunctionCompatator, visit: VisitFunction, node: INode<ValueType>) {
     var l = compare(lo, node.key)
     var h = compare(hi, node.key)
     var v
@@ -453,7 +456,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
   
   //Default comparison function
-  function defaultCompare(a, b): ComparisonResult {
+  function defaultCompare(a: nodeKey, b: nodeKey): ComparisonResult {
     if(a < b) {
       return -1
     }
