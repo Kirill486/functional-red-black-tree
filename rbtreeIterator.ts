@@ -28,7 +28,7 @@ export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
     return new RedBlackTreeIterator(this.tree, this._stack.slice());
   }
 
-  public remove() {
+  public remove(): ITree<ValueType> {
     var stack = this._stack
     if(stack.length === 0) {
       return this.tree

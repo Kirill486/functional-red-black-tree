@@ -32,7 +32,7 @@ export interface IIterator<ValueType> {
 
     update: (value: ValueType) => ITree<ValueType>;
     clone: () => IIterator<ValueType>;
-    remove: () => void;
+    remove: () => ITree<ValueType>;
     prev: () => void;
     next: () => void;
 }

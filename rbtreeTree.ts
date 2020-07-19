@@ -374,7 +374,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator(this, [])
   }
 
-  remove(key) {
+  remove(key): ITree<ValueType> {
     var iter = this.find(key)
     if(iter) {
       return iter.remove()
