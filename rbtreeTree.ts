@@ -56,7 +56,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return 0
   }
 
-  insert = function(key, value) {
+  insert = function(key: nodeKey, value: ValueType) {
     var cmp = this._compare
     //Find point to insert new node at
     var n = this.root
@@ -217,7 +217,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     }
     //Return new tree
     n_stack[0]._color = Color.BLACK
-    return new RedBlackTree(cmp, n_stack[0])
+    return new RedBlackTree(cmp, n_stack[0]) as ITree<ValueType>;
   }
   
   get begin() {
@@ -240,7 +240,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator(this, stack)
   }
 
-  at(idx) {
+  at(idx: number) {
     if(idx < 0) {
       return new RedBlackTreeIterator(this, [])
     }
@@ -271,7 +271,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator(this, [])
   }
 
-  ge(key) {
+  ge(key: nodeKey) {
     var cmp = this._compare
     var n = this.root
     var stack = []

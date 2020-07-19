@@ -6,8 +6,27 @@ export enum Color {
 export type nodeKey = number;
 
 export interface ITree<ValueType> {
-    _compare: FunctionCompatator;
+    readonly _compare: FunctionCompatator;
     root: INode<ValueType>;
+
+    forEach: any;
+
+    readonly keys: nodeKey[];
+    readonly values: ValueType[];
+    readonly length: number;
+    readonly begin: INode<ValueType>;
+    readonly end: INode<ValueType>;
+
+    get: (key: nodeKey) => ValueType;
+    insert: (key: nodeKey, value: ValueType) => ITree<ValueType>;
+    remove: (key: nodeKey) => void;
+
+    at: (idx: number) => IIterator<ValueType>;
+    ge: (key: nodeKey) => IIterator<ValueType>;
+    gt: (key: nodeKey) => IIterator<ValueType>;
+    lt: (key: nodeKey) => IIterator<ValueType>;
+    le: (key: nodeKey) => IIterator<ValueType>;
+    find: (key: nodeKey) => IIterator<ValueType>;
 }
 
 export type Stack<ValueType> = Array<INode<ValueType>>
