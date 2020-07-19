@@ -5,7 +5,7 @@
   "main": "rbtree.js",
   "typings": "./lib/main.d.ts",
   "directories": {
-    "test": "test"
+    "test": "dist/test"
   },
   "dependencies": {},
   "devDependencies": {
@@ -14,7 +14,7 @@
     "tape": "^2.12.0"
   },
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "tsc && tape dist/test/*.js"
   },
   "repository": {
     "type": "git",
