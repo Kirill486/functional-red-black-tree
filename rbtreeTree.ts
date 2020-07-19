@@ -2,45 +2,61 @@ import { RedBlackTreeIterator } from "./rbtreeIterator"
 import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack } from "./libraryDefinitions"
 import { recount, repaint, RBNode } from "./rbtreeNode"
 
-export function RedBlackTree(compare: FunctionCompatator, root: INode<any>) {
+export class RedBlackTree<ValueType> implements ITree<ValueType> {
+  _compare: FunctionCompatator;
+  root: INode<ValueType>;
+  
+  constructor (compare: FunctionCompatator, root: INode<ValueType>) {
     this._compare = compare
     this.root = root
   }
-  
-  var proto = RedBlackTree.prototype
-  
-  Object.defineProperty(proto, "keys", {
-    get: function(): nodeKey[] {
-      var result = []
-      this.forEach(function(k,v) {
-        result.push(k)
-      })
-      return result
+
+  forEach = function rbTreeForEach(visit, lo?: any, hi?: any) {
+    if(!this.root) {
+      return
     }
-  })
+    switch(arguments.length) {
+      case 1:
+        return doVisitFull(visit, this.root)
+      break
   
-  Object.defineProperty(proto, "values", {
-    get: function() {
-      var result = []
-      this.forEach(function(k,v) {
-        result.push(v)
-      })
-      return result
+      case 2:
+        return doVisitHalf(lo, this._compare, visit, this.root)
+      break
+  
+      case 3:
+        if(this._compare(lo, hi) >= 0) {
+          return
+        }
+        return doVisit(lo, hi, this._compare, visit, this.root)
+      break
     }
-  })
-  
-  //Returns the number of nodes in the tree
-  Object.defineProperty(proto, "length", {
-    get: function(): INode<any> | 0 {
-      if(this.root) {
-        return this.root._count
-      }
-      return 0
+  }
+
+  get keys(): nodeKey[] {
+    var result = []
+    this.forEach(function(k,v) {
+      result.push(k)
+    })
+    return result
+  }
+
+  get values() {
+    var result = []
+    this.forEach(function(k,v) {
+      result.push(v)
+    })
+    return result
+  }
+
+  get length() {
+    if(this.root) {
+      return this.root._count
     }
-  })
-  
-  //Insert a new item into the tree
-  proto.insert = function(key, value) {
+    return 0
+  }
+
+  insert = function(key, value) {
     var cmp = this._compare
     //Find point to insert new node at
     var n = this.root
@@ -204,6 +220,185 @@ export function RedBlackTree(compare: FunctionCompatator, root: INode<any>) {
     return new RedBlackTree(cmp, n_stack[0])
   }
   
+  get begin() {
+    var stack = []
+      var n = this.root
+      while(n) {
+        stack.push(n)
+        n = n.left
+      }
+    return new RedBlackTreeIterator(this, stack)
+  }
+
+  get end() {
+    var stack = []
+    var n = this.root
+    while(n) {
+      stack.push(n)
+      n = n.right
+    }
+    return new RedBlackTreeIterator(this, stack)
+  }
+
+  at(idx) {
+    if(idx < 0) {
+      return new RedBlackTreeIterator(this, [])
+    }
+    var n: INode<any> = this.root
+    var stack: Stack<any> = []
+    while(true) {
+      stack.push(n)
+      if(n.left) {
+        if(idx < n.left._count) {
+          n = n.left
+          continue
+        }
+        idx -= n.left._count
+      }
+      if(!idx) {
+        return new RedBlackTreeIterator(this, stack)
+      }
+      idx -= 1
+      if(n.right) {
+        if(idx >= n.right._count) {
+          break
+        }
+        n = n.right
+      } else {
+        break
+      }
+    }
+    return new RedBlackTreeIterator(this, [])
+  }
+
+  ge(key) {
+    var cmp = this._compare
+    var n = this.root
+    var stack = []
+    var last_ptr = 0
+    while(n) {
+      var d = cmp(key, n.key)
+      stack.push(n)
+      if(d <= 0) {
+        last_ptr = stack.length
+      }
+      if(d <= 0) {
+        n = n.left
+      } else {
+        n = n.right
+      }
+    }
+    stack.length = last_ptr
+    return new RedBlackTreeIterator(this, stack)
+  }
+
+  gt(key) {
+    var cmp = this._compare
+    var n = this.root
+    var stack = []
+    var last_ptr = 0
+    while(n) {
+      var d = cmp(key, n.key)
+      stack.push(n)
+      if(d < 0) {
+        last_ptr = stack.length
+      }
+      if(d < 0) {
+        n = n.left
+      } else {
+        n = n.right
+      }
+    }
+    stack.length = last_ptr
+    return new RedBlackTreeIterator(this, stack)
+  }
+
+  lt(key) {
+    var cmp = this._compare
+    var n = this.root
+    var stack = []
+    var last_ptr = 0
+    while(n) {
+      var d = cmp(key, n.key)
+      stack.push(n)
+      if(d > 0) {
+        last_ptr = stack.length
+      }
+      if(d <= 0) {
+        n = n.left
+      } else {
+        n = n.right
+      }
+    }
+    stack.length = last_ptr
+    return new RedBlackTreeIterator(this, stack)
+  }
+
+  le(key) {
+    var cmp = this._compare
+    var n = this.root
+    var stack = []
+    var last_ptr = 0
+    while(n) {
+      var d = cmp(key, n.key)
+      stack.push(n)
+      if(d >= 0) {
+        last_ptr = stack.length
+      }
+      if(d < 0) {
+        n = n.left
+      } else {
+        n = n.right
+      }
+    }
+    stack.length = last_ptr
+    return new RedBlackTreeIterator(this, stack)
+  }
+
+  find(key) {
+    var cmp = this._compare
+    var n = this.root
+    var stack = []
+    while(n) {
+      var d = cmp(key, n.key)
+      stack.push(n)
+      if(d === 0) {
+        return new RedBlackTreeIterator(this, stack)
+      }
+      if(d <= 0) {
+        n = n.left
+      } else {
+        n = n.right
+      }
+    }
+    return new RedBlackTreeIterator(this, [])
+  }
+
+  remove(key) {
+    var iter = this.find(key)
+    if(iter) {
+      return iter.remove()
+    }
+    return this
+  }
+
+  get(key: nodeKey) {
+    var cmp = this._compare
+    var n = this.root
+    while(n) {
+      var d = cmp(key, n.key)
+      if(d === 0) {
+        return n.value
+      }
+      if(d <= 0) {
+        n = n.left
+      } else {
+        n = n.right
+      }
+    }
+    return
+  }
+}
   
   //Visit all nodes inorder
   function doVisitFull(visit, node) {
@@ -252,218 +447,6 @@ export function RedBlackTree(compare: FunctionCompatator, root: INode<any>) {
     if(h > 0 && node.right) {
       return doVisit(lo, hi, compare, visit, node.right)
     }
-  }
-  
-  
-  proto.forEach = function rbTreeForEach(visit, lo, hi) {
-    if(!this.root) {
-      return
-    }
-    switch(arguments.length) {
-      case 1:
-        return doVisitFull(visit, this.root)
-      break
-  
-      case 2:
-        return doVisitHalf(lo, this._compare, visit, this.root)
-      break
-  
-      case 3:
-        if(this._compare(lo, hi) >= 0) {
-          return
-        }
-        return doVisit(lo, hi, this._compare, visit, this.root)
-      break
-    }
-  }
-  
-  //First item in list
-  Object.defineProperty(proto, "begin", {
-    get: function() {
-      var stack = []
-      var n = this.root
-      while(n) {
-        stack.push(n)
-        n = n.left
-      }
-      return new RedBlackTreeIterator(this, stack)
-    }
-  })
-  
-  //Last item in list
-  Object.defineProperty(proto, "end", {
-    get: function() {
-      var stack = []
-      var n = this.root
-      while(n) {
-        stack.push(n)
-        n = n.right
-      }
-      return new RedBlackTreeIterator(this, stack)
-    }
-  })
-  
-  //Find the ith item in the tree
-  proto.at = function(idx) {
-    if(idx < 0) {
-      return new RedBlackTreeIterator(this, [])
-    }
-    var n: INode<any> = this.root
-    var stack: Stack<any> = []
-    while(true) {
-      stack.push(n)
-      if(n.left) {
-        if(idx < n.left._count) {
-          n = n.left
-          continue
-        }
-        idx -= n.left._count
-      }
-      if(!idx) {
-        return new RedBlackTreeIterator(this, stack)
-      }
-      idx -= 1
-      if(n.right) {
-        if(idx >= n.right._count) {
-          break
-        }
-        n = n.right
-      } else {
-        break
-      }
-    }
-    return new RedBlackTreeIterator(this, [])
-  }
-  
-  proto.ge = function(key) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    var last_ptr = 0
-    while(n) {
-      var d = cmp(key, n.key)
-      stack.push(n)
-      if(d <= 0) {
-        last_ptr = stack.length
-      }
-      if(d <= 0) {
-        n = n.left
-      } else {
-        n = n.right
-      }
-    }
-    stack.length = last_ptr
-    return new RedBlackTreeIterator(this, stack)
-  }
-  
-  proto.gt = function(key) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    var last_ptr = 0
-    while(n) {
-      var d = cmp(key, n.key)
-      stack.push(n)
-      if(d < 0) {
-        last_ptr = stack.length
-      }
-      if(d < 0) {
-        n = n.left
-      } else {
-        n = n.right
-      }
-    }
-    stack.length = last_ptr
-    return new RedBlackTreeIterator(this, stack)
-  }
-  
-  proto.lt = function(key) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    var last_ptr = 0
-    while(n) {
-      var d = cmp(key, n.key)
-      stack.push(n)
-      if(d > 0) {
-        last_ptr = stack.length
-      }
-      if(d <= 0) {
-        n = n.left
-      } else {
-        n = n.right
-      }
-    }
-    stack.length = last_ptr
-    return new RedBlackTreeIterator(this, stack)
-  }
-  
-  proto.le = function(key) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    var last_ptr = 0
-    while(n) {
-      var d = cmp(key, n.key)
-      stack.push(n)
-      if(d >= 0) {
-        last_ptr = stack.length
-      }
-      if(d < 0) {
-        n = n.left
-      } else {
-        n = n.right
-      }
-    }
-    stack.length = last_ptr
-    return new RedBlackTreeIterator(this, stack)
-  }
-  
-  //Finds the item with key if it exists
-  proto.find = function(key) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    while(n) {
-      var d = cmp(key, n.key)
-      stack.push(n)
-      if(d === 0) {
-        return new RedBlackTreeIterator(this, stack)
-      }
-      if(d <= 0) {
-        n = n.left
-      } else {
-        n = n.right
-      }
-    }
-    return new RedBlackTreeIterator(this, [])
-  }
-  
-  //Removes item with key from tree
-  proto.remove = function(key) {
-    var iter = this.find(key)
-    if(iter) {
-      return iter.remove()
-    }
-    return this
-  }
-  
-  //Returns the item at `key`
-  proto.get = function(key) {
-    var cmp = this._compare
-    var n = this.root
-    while(n) {
-      var d = cmp(key, n.key)
-      if(d === 0) {
-        return n.value
-      }
-      if(d <= 0) {
-        n = n.left
-      } else {
-        n = n.right
-      }
-    }
-    return
   }
   
   //Default comparison function
