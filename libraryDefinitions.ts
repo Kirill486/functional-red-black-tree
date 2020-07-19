@@ -21,5 +21,21 @@ export interface INode<ValueType>{
     _color: Color;
 }
 
+export interface IIterator<ValueType> {
+    readonly valid: boolean;
+    readonly node: INode<ValueType>;
+    readonly key: number;
+    readonly value: ValueType;
+    readonly index: number;
+    readonly hasNext: boolean;
+    readonly hasPrev: boolean;
+
+    update: (value: ValueType) => ITree<ValueType>;
+    clone: () => IIterator<ValueType>;
+    remove: () => void;
+    prev: () => void;
+    next: () => void;
+}
+
 export type NodeConstructo<ValueType> = new (...args: any[]) => INode<ValueType>;
 export type FunctionCompatator = any;

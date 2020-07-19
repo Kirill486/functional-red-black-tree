@@ -1,9 +1,9 @@
-import { ITree, Color, INode, Stack } from "./libraryDefinitions"
+import { ITree, Color, INode, Stack, IIterator } from "./libraryDefinitions"
 import { cloneNode, recount, repaint, RBNode } from "./rbtreeNode"
 import { RedBlackTree } from "./rbtreeTree"
 
 //Iterator for red black tree
-export class RedBlackTreeIterator<ValueType> {
+export class RedBlackTreeIterator<ValueType> implements IIterator<ValueType> {
   tree: ITree<ValueType>;
   private _stack: Stack<ValueType>
   
@@ -12,23 +12,23 @@ export class RedBlackTreeIterator<ValueType> {
     this._stack = stack;
   }
 
-  get valid() {
+  public get valid(): boolean {
     return this._stack.length > 0;
   }
 
   // enumerable: true
-  get node() {
+  public get node(): INode<ValueType> {
     if(this._stack.length > 0) {
       return this._stack[this._stack.length-1];
     }
     return null;
   }
 
-  clone = function() {
+  public clone(): RedBlackTreeIterator<ValueType> {
     return new RedBlackTreeIterator(this.tree, this._stack.slice());
   }
 
-  remove = function() {
+  public remove() {
     var stack = this._stack
     if(stack.length === 0) {
       return this.tree
@@ -131,21 +131,21 @@ export class RedBlackTreeIterator<ValueType> {
   }
 
   // enumerable: true
-  get key() {
+  public get key() {
     if(this._stack.length > 0) {
       return this._stack[this._stack.length-1].key;
     }
     return;
   }
 
-  get value() {
+  public get value() {
     if(this._stack.length > 0) {
       return this._stack[this._stack.length-1].value;
     }
     return;
   }
 
-  get index() {
+  public get index() {
     var idx = 0
     var stack = this._stack
     if(stack.length === 0) {
@@ -168,7 +168,7 @@ export class RedBlackTreeIterator<ValueType> {
     return idx
   }
 
-  next = function(): void {
+  public next(): void {
     var stack = this._stack
     if(stack.length === 0) {
       return
@@ -189,7 +189,7 @@ export class RedBlackTreeIterator<ValueType> {
     }
   }
 
-  get hasNext(): boolean {
+  public get hasNext(): boolean {
       var stack = this._stack
       if(stack.length === 0) {
         return false
@@ -205,7 +205,7 @@ export class RedBlackTreeIterator<ValueType> {
       return false
   }
 
-  update = function(value): ITree<any> {
+  public update(value: ValueType): ITree<ValueType> {
     var stack = this._stack
     if(stack.length === 0) {
       throw new Error("Can't update empty node!")
@@ -224,7 +224,7 @@ export class RedBlackTreeIterator<ValueType> {
     return new RedBlackTree(this.tree._compare, cstack[0])
   }
 
-  prev = function(): void {
+  public prev(): void {
     var stack = this._stack
     if(stack.length === 0) {
       return
@@ -245,7 +245,7 @@ export class RedBlackTreeIterator<ValueType> {
     }
   }
 
-  get hasPrev(): boolean {
+  public get hasPrev(): boolean {
     var stack = this._stack
     if(stack.length === 0) {
       return false
@@ -261,9 +261,6 @@ export class RedBlackTreeIterator<ValueType> {
     return false
   }
 }
-
-
-  
   
 //Swaps two nodes
 function swapNode(n: INode<any>, v: INode<any>) {
@@ -275,8 +272,8 @@ function swapNode(n: INode<any>, v: INode<any>) {
   n._count = v._count
 }
   
-  //Fix up a double black node in a tree
-  function fixDoubleBlack(stack) {
+//Fix up a double black node in a tree
+function fixDoubleBlack(stack) {
     var n, p, s, z
     for(var i=stack.length-1; i>=0; --i) {
       n = stack[i]
@@ -466,4 +463,4 @@ function swapNode(n: INode<any>, v: INode<any>) {
         }
       }
     }
-  }
+}
