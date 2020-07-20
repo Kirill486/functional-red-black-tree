@@ -14,6 +14,7 @@
     "tape": "^2.12.0"
   },
   "scripts": {
+    "build": "tsc",
     "test": "tsc && tape dist/test/*.js"
   },
   "repository": {
