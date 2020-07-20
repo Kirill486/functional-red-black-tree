@@ -1,6 +1,6 @@
-import {createRBTree} from './rbtreeTree';
+import {createRBTree, defaultCompare, RedBlackTree} from './rbtreeTree';
 
 "use strict"
 
-export {createRBTree};
+export {createRBTree, defaultCompare, RedBlackTree};
 // module.exports = createRBTree

@@ -455,16 +455,16 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     }
   }
   
-  //Default comparison function
-  function defaultCompare(a: nodeKey, b: nodeKey): ComparisonResult {
-    if(a < b) {
-      return -1
-    }
-    if(a > b) {
-      return 1
-    }
-    return 0
+// Default comparison function
+export const defaultCompare: FunctionCompatator = (a: nodeKey, b: nodeKey) => {
+  if(a < b) {
+    return -1
   }
+  if(a > b) {
+    return 1
+  }
+  return 0
+}
   
   //Build a tree
 export const createRBTree = <ValueType>(compare?: FunctionCompatator) => {
