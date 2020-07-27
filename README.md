@@ -1,4 +1,4 @@
-functional-red-black-tree
+functional-red-black-tree2
 =========================
 A [fully persistent](http://en.wikipedia.org/wiki/Persistent_data_structure) [red-black tree](http://en.wikipedia.org/wiki/Red%E2%80%93black_tree) written 100% in JavaScript.  Works both in node.js and in the browser via [browserify](http://browserify.org/).
 
@@ -8,7 +8,7 @@ Some advantages of this is that it is possible to apply insertions and removals 
 
 # Install
 
-    npm install functional-red-black-tree
+    npm install functional-red-black-tree2
 
 # Example
 
@@ -16,7 +16,7 @@ Here is an example of some basic usage:
 
 ```javascript
 //Load the library
-var createTree = require("functional-red-black-tree")
+var createTree = require("functional-red-black-tree2")
 
 //Create a tree
 var t1 = createTree()
@@ -33,7 +33,7 @@ var t4 = t3.remove(1)
 # API
 
 ```javascript
-var createTree = require("functional-red-black-tree")
+var createTree = require("functional-red-black-tree2")
 ```
 
 ## Overview
@@ -233,5 +233,10 @@ If true, then the iterator is not at the end of the sequence
 ### `iter.hasPrev`
 If true, then the iterator is not at the beginning of the sequence
 
-# Credits
-(c) 2013 Mikola Lysenko. MIT License
+# Fork
+
+This repo is a fork of the [functional-red-black-tree repository](https://github.com/mikolalysenko/functional-red-black-tree);
+
+The idea is to provide the same functionality, but **well-typed**.
+
+I did not change any logic with a few exceptions I can count by fingers on my one hand.
