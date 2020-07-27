@@ -47,7 +47,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return result
   }
 
-  get values() {
+  get values(): ValueType[] {
     var result = []
     this.forEach(function(k,v) {
       result.push(v)
