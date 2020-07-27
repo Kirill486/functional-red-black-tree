@@ -1,8 +1,9 @@
 "use strict"
 
-var makeTree = require("../rbtree.js")
+import {createRBTree as makeTree} from '../rbtree';
+import { nodeKey } from '../libraryDefinitions';
+
 var tape = require("tape")
-var util = require("util")
 var iota = require("iota-array")
 
 var COLORS = [ "r", "b", "bb" ]
@@ -257,7 +258,7 @@ tape("update()", function(t) {
 
 tape("keys and values", function(t) {
 
-  var original_keys = [ "potato", "sock", "foot", "apple", "newspaper", "gameboy" ]
+  var original_keys: nodeKey[] = [ 111, 222, 333, 444, 555, 666 ]
   var original_values = [ 42, 10, false, "!!!", {}, null ]
 
   var u = makeTree()
@@ -438,38 +439,38 @@ tape("slab-sequence-2", function(t) {
   u=u.insert( 2 , 1 )
   u=u.insert( 3 , 26 )
   u=u.insert( 21 , 19 )
-  u=u.remove( 18 , 17 )
-  u=u.remove( 17 , 23 )
-  u=u.remove( 16 , 4 )
-  u=u.remove( 15 , 29 )
-  u=u.remove( 14 , 10 )
-  u=u.remove( 13 , 16 )
-  u=u.remove( 12 , 22 )
-  u=u.remove( 6 , 2 )
-  u=u.remove( 7 , 21 )
-  u=u.remove( 8 , 15 )
-  u=u.remove( 11 , 3 )
-  u=u.remove( 4 , 8 )
-  u=u.remove( 9 , 9 )
-  u=u.remove( 10 , 28 )
-  u=u.remove( 5 , 27 )
-  u=u.remove( 31 , 11 )
-  u=u.remove( 0 , 14 )
-  u=u.remove( 30 , 30 )
-  u=u.remove( 29 , 5 )
-  u=u.remove( 1 , 20 )
-  u=u.remove( 28 , 24 )
-  u=u.remove( 2 , 1 )
-  u=u.remove( 3 , 26 )
-  u=u.remove( 27 , 18 )
-  u=u.remove( 19 , 7 )
-  u=u.remove( 26 , 12 )
-  u=u.remove( 20 , 13 )
-  u=u.remove( 25 , 31 )
-  u=u.remove( 24 , 6 )
-  u=u.remove( 21 , 19 )
-  u=u.remove( 23 , 25 )
-  u=u.remove( 22 , 0 )
+  u=u.remove( 18 )
+  u=u.remove( 17 )
+  u=u.remove( 16 )
+  u=u.remove( 15 )
+  u=u.remove( 14 )
+  u=u.remove( 13 )
+  u=u.remove( 12 )
+  u=u.remove( 6 )
+  u=u.remove( 7 )
+  u=u.remove( 8 )
+  u=u.remove( 11 )
+  u=u.remove( 4 )
+  u=u.remove( 9 )
+  u=u.remove( 10 )
+  u=u.remove( 5 )
+  u=u.remove( 31 )
+  u=u.remove( 0 )
+  u=u.remove( 30 )
+  u=u.remove( 29 )
+  u=u.remove( 1 )
+  u=u.remove( 28 )
+  u=u.remove( 2 )
+  u=u.remove( 3 )
+  u=u.remove( 27 )
+  u=u.remove( 19 )
+  u=u.remove( 26 )
+  u=u.remove( 20 )
+  u=u.remove( 25 )
+  u=u.remove( 24 )
+  u=u.remove( 21 )
+  u=u.remove( 23 )
+  u=u.remove( 22 )
 
   t.end()
 })

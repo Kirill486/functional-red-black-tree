@@ -47,7 +47,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return result
   }
 
-  get values() {
+  get values(): ValueType[] {
     var result = []
     this.forEach(function(k,v) {
       result.push(v)
@@ -246,7 +246,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator<ValueType>(this, stack) as IIterator<ValueType>;
   }
 
-  at(idx: number) {
+  at(idx: nodeKey) {
     if(idx < 0) {
       return new RedBlackTreeIterator<ValueType>(this, [])
     }
@@ -298,7 +298,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
-  gt(key) {
+  gt(key: nodeKey) {
     var cmp = this._compare
     var n = this.root
     var stack = []
@@ -319,7 +319,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
-  lt(key) {
+  lt(key: nodeKey) {
     var cmp = this._compare
     var n = this.root
     var stack = []
@@ -340,7 +340,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
-  le(key) {
+  le(key: nodeKey) {
     var cmp = this._compare
     var n = this.root
     var stack = []
@@ -361,7 +361,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator<ValueType>(this, stack)
   }
 
-  find(key) {
+  find(key: nodeKey) {
     var cmp = this._compare
     var n = this.root
     var stack = []
@@ -380,7 +380,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return new RedBlackTreeIterator<ValueType>(this, [])
   }
 
-  remove(key): ITree<ValueType> {
+  remove(key: nodeKey): ITree<ValueType> {
     var iter = this.find(key)
     if(iter) {
       return iter.remove()
