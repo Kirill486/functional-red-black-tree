@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc",
     "test": "tsc && tape dist/test/*.js",
-    "build_docs": "./node_modules/.bin/typedoc --out docs --mode modules --readme ./misc/README.md --plugin typedoc-plugin-markdown"
+    "build_docs": "./node_modules/.bin/typedoc --out docs --mode modules --readme ./misc/README.md --plugin typedoc-plugin-markdown --tsconfig ./misc/tsconfig.json"
   },
   "repository": {
     "type": "git",
