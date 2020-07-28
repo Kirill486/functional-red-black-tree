@@ -1,6 +1,6 @@
 {
   "name": "functional-red-black-tree2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fully persistent balanced binary search tree. Typed version",
   "main": "./dist/rbtree.js",
   "typings": "./dist/rbtree.d.ts",
