@@ -1,10 +1,13 @@
+/** The same semantics as ```array.sort()``` */
 export type ComparisonResult = -1 | 0 | 1;
 
+/** Node color */
 export enum Color {
     RED   = 0,
     BLACK = 1,
 }
 
+/** Tree stores data by number keys */
 export type nodeKey = number;
 
 export interface ITree<ValueType> {
@@ -127,5 +130,8 @@ export interface IIterator<ValueType> {
     next: () => void;
 }
 
+/** Comparison function, same semantics as ```array.sort()``` */
 export type FunctionCompatator = (a: number, b: number) => ComparisonResult;
+
+/** A function to execute for each node or each element */
 export type VisitFunction = <ValueType>(key: nodeKey, value: ValueType) => any;
