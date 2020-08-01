@@ -45,7 +45,7 @@ export interface ITree<ValueType> {
     /** Creates a **new tree** with the **first item with given key** removed */
     remove: (key: nodeKey) => ITree<ValueType>;
 
-    /** Finds an iterator starting at the given element, otherwise ***investigate* */
+    /** Finds an iterator starting at the given element, otherwise */
     at: (idx: number) => IIterator<ValueType>;
 
     /** Find the first item in the tree whose ```key is >= key``` */
@@ -60,7 +60,7 @@ export interface ITree<ValueType> {
     /** Finds the last item in the tree whose ```key is <= key``` */
     le: (key: nodeKey) => IIterator<ValueType>;
 
-    /** Returns an iterator pointing to the first item in the tree with key, otherwise **investigate**. */
+    /** Returns an iterator pointing to the first item in the tree with key, otherwise. */
     find: (key: nodeKey) => IIterator<ValueType>;
 }
 
@@ -79,7 +79,7 @@ export interface INode<ValueType>{
     /** The right subtree of the node */
     right: INode<ValueType>;
 
-    /** Node leaves count **investigate** */
+    /** Node leaves count */
     _count: number;
 
     /** Node color */
@@ -93,10 +93,10 @@ export interface IIterator<ValueType> {
     /** We do not interface this */
     _stack: Stack<ValueType>
 
-    /** Checks if the iterator is valid **investigate** */
+    /** Checks if the iterator is valid */
     readonly valid: boolean;
 
-    /** The value of the node at the iterator's current position. **investigate** */
+    /** The value of the node at the iterator's current position */
     readonly node: INode<ValueType>;
 
     /** The key of the item referenced by the iterator */
