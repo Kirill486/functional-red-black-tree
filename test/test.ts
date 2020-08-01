@@ -3,8 +3,8 @@
 import {createRBTree as makeTree} from '../rbtree';
 import { nodeKey } from '../libraryDefinitions';
 
-import tape = require("tape");
-import iota = require("iota-array");
+import * as tape from "tape";
+import * as iota from "iota-array";
 
 const COLORS = [ "r", "b", "bb" ]
 
