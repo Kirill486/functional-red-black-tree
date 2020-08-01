@@ -1,11 +1,11 @@
 import { RedBlackTreeIterator } from "./rbtreeIterator"
-import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack, VisitFunction, ComparisonResult, IIterator } from "./libraryDefinitions"
+import { Color, INode, nodeKey, FunctionCompatator, ITree, Stack, VisitFunction, ComparisonResult, IIterator } from "./libraryDefinitions";
 import { recount, repaint, RBNode } from "./rbtreeNode"
 
 export class RedBlackTree<ValueType> implements ITree<ValueType> {
   _compare: FunctionCompatator;
   root: INode<ValueType>;
-  
+
   constructor (compare: FunctionCompatator, root: INode<ValueType>) {
     this._compare = compare
     this.root = root
@@ -20,16 +20,16 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       (typeof hi === "number") && (typeof lo === "number") && 3 ||
       (typeof lo === "number") && 2 ||
       1;
-    
+
     switch(argumentsLength) {
       case 1:
         return doVisitFull(visit, this.root)
       break
-  
+
       case 2:
         return doVisitHalf(lo, this._compare, visit, this.root)
       break
-  
+
       case 3:
         if(this._compare(lo, hi) >= 0) {
           return
@@ -40,16 +40,16 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   get keys(): nodeKey[] {
-    var result = []
-    this.forEach(function(k,v) {
+    const result = []
+    this.forEach((k,v) => {
       result.push(k)
     })
     return result
   }
 
   get values(): ValueType[] {
-    var result = []
-    this.forEach(function(k,v) {
+    const result = []
+    this.forEach((k,v) => {
       result.push(v)
     })
     return result
@@ -63,13 +63,13 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   insert = function(key: nodeKey, value: ValueType): ITree<ValueType> {
-    var cmp = this._compare
-    //Find point to insert new node at
-    var n = this.root
-    var n_stack = []
-    var d_stack = []
+    const cmp = this._compare
+    // Find point to insert new node at
+    let n = this.root
+    const n_stack = []
+    const d_stack = []
     while(n) {
-      var d = cmp(key, n.key)
+      const d = cmp(key, n.key)
       n_stack.push(n)
       d_stack.push(d)
       if(d <= 0) {
@@ -78,36 +78,36 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
         n = n.right
       }
     }
-    //Rebuild path to leaf node
+    // Rebuild path to leaf node
     n_stack.push(new RBNode<ValueType>(Color.RED, key, value, null, null, 1))
-    for(var s=n_stack.length-2; s>=0; --s) {
-      var n = n_stack[s]
+    for(let s=n_stack.length-2; s>=0; --s) {
+      const n = n_stack[s]
       if(d_stack[s] <= 0) {
         n_stack[s] = new RBNode<ValueType>(n._color, n.key, n.value, n_stack[s+1], n.right, n._count+1)
       } else {
         n_stack[s] = new RBNode<ValueType>(n._color, n.key, n.value, n.left, n_stack[s+1], n._count+1)
       }
     }
-    //Rebalance tree using rotations
-    //console.log("start insert", key, d_stack)
-    for(var s=n_stack.length-1; s>1; --s) {
-      var p = n_stack[s-1]
-      var n = n_stack[s]
+    // Rebalance tree using rotations
+    // console.log("start insert", key, d_stack)
+    for(let s=n_stack.length-1; s>1; --s) {
+      const p = n_stack[s-1]
+      const n = n_stack[s]
       if(p._color === Color.BLACK || n._color === Color.BLACK) {
         break
       }
-      var pp = n_stack[s-2]
+      const pp = n_stack[s-2]
       if(pp.left === p) {
         if(p.left === n) {
-          var y = pp.right
+          const y = pp.right
           if(y && y._color === Color.RED) {
-            //console.log("LLr")
+            // console.log("LLr")
             p._color = Color.BLACK
             pp.right = repaint(Color.BLACK, y)
             pp._color = Color.RED
             s -= 1
           } else {
-            //console.log("LLb")
+            // console.log("LLb")
             pp._color = Color.RED
             pp.left = p.right
             p._color = Color.BLACK
@@ -117,7 +117,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
             recount(pp)
             recount(p)
             if(s >= 3) {
-              var ppp = n_stack[s-3]
+              const ppp = n_stack[s-3]
               if(ppp.left === pp) {
                 ppp.left = p
               } else {
@@ -127,15 +127,15 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
             break
           }
         } else {
-          var y = pp.right
+          const y = pp.right
           if(y && y._color === Color.RED) {
-            //console.log("LRr")
+            // console.log("LRr")
             p._color = Color.BLACK
             pp.right = repaint(Color.BLACK, y)
             pp._color = Color.RED
             s -= 1
           } else {
-            //console.log("LRb")
+            // console.log("LRb")
             p.right = n.left
             pp._color = Color.RED
             pp.left = n.right
@@ -148,7 +148,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
             recount(p)
             recount(n)
             if(s >= 3) {
-              var ppp = n_stack[s-3]
+              const ppp = n_stack[s-3]
               if(ppp.left === pp) {
                 ppp.left = n
               } else {
@@ -160,15 +160,15 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
         }
       } else {
         if(p.right === n) {
-          var y = pp.left
+          const y = pp.left
           if(y && y._color === Color.RED) {
-            //console.log("RRr", y.key)
+            // console.log("RRr", y.key)
             p._color = Color.BLACK
             pp.left = repaint(Color.BLACK, y)
             pp._color = Color.RED
             s -= 1
           } else {
-            //console.log("RRb")
+            // console.log("RRb")
             pp._color = Color.RED
             pp.right = p.left
             p._color = Color.BLACK
@@ -178,7 +178,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
             recount(pp)
             recount(p)
             if(s >= 3) {
-              var ppp = n_stack[s-3]
+              const ppp = n_stack[s-3]
               if(ppp.right === pp) {
                 ppp.right = p
               } else {
@@ -188,15 +188,15 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
             break
           }
         } else {
-          var y = pp.left
+          const y = pp.left
           if(y && y._color === Color.RED) {
-            //console.log("RLr")
+            // console.log("RLr")
             p._color = Color.BLACK
             pp.left = repaint(Color.BLACK, y)
             pp._color = Color.RED
             s -= 1
           } else {
-            //console.log("RLb")
+            // console.log("RLb")
             p.left = n.right
             pp._color = Color.RED
             pp.right = n.left
@@ -209,7 +209,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
             recount(p)
             recount(n)
             if(s >= 3) {
-              var ppp = n_stack[s-3]
+              const ppp = n_stack[s-3]
               if(ppp.right === pp) {
                 ppp.right = n
               } else {
@@ -221,14 +221,14 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
         }
       }
     }
-    //Return new tree
+    // Return new tree
     n_stack[0]._color = Color.BLACK
     return new RedBlackTree(cmp, n_stack[0]);
   }
-  
+
   get begin() {
-    var stack = []
-      var n = this.root
+    const stack = []
+      let n = this.root
       while(n) {
         stack.push(n)
         n = n.left
@@ -237,8 +237,8 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   get end() {
-    var stack = []
-    var n = this.root
+    const stack = []
+    let n = this.root
     while(n) {
       stack.push(n)
       n = n.right
@@ -250,8 +250,8 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     if(idx < 0) {
       return new RedBlackTreeIterator<ValueType>(this, [])
     }
-    var n: INode<any> = this.root
-    var stack: Stack<any> = []
+    let n: INode<any> = this.root
+    const stack: Stack<any> = []
     while(true) {
       stack.push(n)
       if(n.left) {
@@ -278,12 +278,12 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   ge(key: nodeKey) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    var last_ptr = 0
+    const cmp = this._compare
+    let n = this.root
+    const stack = []
+    let last_ptr = 0
     while(n) {
-      var d = cmp(key, n.key)
+      const d = cmp(key, n.key)
       stack.push(n)
       if(d <= 0) {
         last_ptr = stack.length
@@ -299,12 +299,12 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   gt(key: nodeKey) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    var last_ptr = 0
+    const cmp = this._compare
+    let n = this.root
+    const stack = []
+    let last_ptr = 0
     while(n) {
-      var d = cmp(key, n.key)
+      const d = cmp(key, n.key)
       stack.push(n)
       if(d < 0) {
         last_ptr = stack.length
@@ -320,12 +320,12 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   lt(key: nodeKey) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    var last_ptr = 0
+    const cmp = this._compare
+    let n = this.root
+    const stack = []
+    let last_ptr = 0
     while(n) {
-      var d = cmp(key, n.key)
+      const d = cmp(key, n.key)
       stack.push(n)
       if(d > 0) {
         last_ptr = stack.length
@@ -341,12 +341,12 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   le(key: nodeKey) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
-    var last_ptr = 0
+    const cmp = this._compare
+    let n = this.root
+    const stack = []
+    let last_ptr = 0
     while(n) {
-      var d = cmp(key, n.key)
+      const d = cmp(key, n.key)
       stack.push(n)
       if(d >= 0) {
         last_ptr = stack.length
@@ -362,11 +362,11 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   find(key: nodeKey) {
-    var cmp = this._compare
-    var n = this.root
-    var stack = []
+    const cmp = this._compare
+    let n = this.root
+    const stack = []
     while(n) {
-      var d = cmp(key, n.key)
+      const d = cmp(key, n.key)
       stack.push(n)
       if(d === 0) {
         return new RedBlackTreeIterator<ValueType>(this, stack)
@@ -381,7 +381,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   remove(key: nodeKey): ITree<ValueType> {
-    var iter = this.find(key)
+    const iter = this.find(key)
     if(iter) {
       return iter.remove()
     }
@@ -389,10 +389,10 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
   }
 
   get(key: nodeKey): ValueType {
-    var cmp = this._compare
-    var n = this.root
+    const cmp = this._compare
+    let n = this.root
     while(n) {
-      var d = cmp(key, n.key)
+      const d = cmp(key, n.key)
       if(d === 0) {
         return n.value
       }
@@ -405,41 +405,41 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
     return
   }
 }
-  
-  //Visit all nodes inorder
+
+  // Visit all nodes inorder
   function doVisitFull(visit, node) {
     if(node.left) {
-      var v = doVisitFull(visit, node.left)
+      const v = doVisitFull(visit, node.left)
       if(v) { return v }
     }
-    var v = visit(node.key, node.value)
+    const v = visit(node.key, node.value)
     if(v) { return v }
     if(node.right) {
       return doVisitFull(visit, node.right)
     }
   }
-  
-  //Visit half nodes in order
+
+  // Visit half nodes in order
   function doVisitHalf<ValueType>(lo: nodeKey, compare: FunctionCompatator, visit: VisitFunction, node: INode<ValueType>) {
-    var l = compare(lo, node.key)
+    const l = compare(lo, node.key)
     if(l <= 0) {
       if(node.left) {
-        var v = doVisitHalf(lo, compare, visit, node.left)
+        const v = doVisitHalf(lo, compare, visit, node.left)
         if(v) { return v }
       }
-      var v = visit(node.key, node.value)
+      const v = visit(node.key, node.value)
       if(v) { return v }
     }
     if(node.right) {
       return doVisitHalf(lo, compare, visit, node.right)
     }
   }
-  
-  //Visit all nodes within a range
+
+  // Visit all nodes within a range
   function doVisit<ValueType>(lo: nodeKey, hi: nodeKey, compare: FunctionCompatator, visit: VisitFunction, node: INode<ValueType>) {
-    var l = compare(lo, node.key)
-    var h = compare(hi, node.key)
-    var v
+    const l = compare(lo, node.key)
+    const h = compare(hi, node.key)
+    let v
     if(l <= 0) {
       if(node.left) {
         v = doVisit(lo, hi, compare, visit, node.left)
@@ -454,7 +454,7 @@ export class RedBlackTree<ValueType> implements ITree<ValueType> {
       return doVisit(lo, hi, compare, visit, node.right)
     }
   }
-  
+
 // Default comparison function
 export const defaultCompare: FunctionCompatator = (a: nodeKey, b: nodeKey) => {
   if(a < b) {
@@ -465,8 +465,8 @@ export const defaultCompare: FunctionCompatator = (a: nodeKey, b: nodeKey) => {
   }
   return 0
 }
-  
-  //Build a tree
+
+  // Build a tree
 export const createRBTree = <ValueType>(compare?: FunctionCompatator) => {
   return new RedBlackTree<ValueType>(compare || defaultCompare, null);
 }
