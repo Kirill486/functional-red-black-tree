@@ -10,7 +10,7 @@ export type nodeKey = number;
 export interface ITree<ValueType> {
 
     /** Comparison function, same semantics as ```array.sort()``` */
-    // readonly _compare: FunctionCompatator;
+    readonly _compare: FunctionCompatator;
     
     /** The root node of the tree */
     root: INode<ValueType>;
@@ -76,11 +76,11 @@ export interface INode<ValueType>{
     /** The right subtree of the node */
     right: INode<ValueType>;
 
-    /** !!! */
-    // _count: number;
+    /** Node leaves count **investigate** */
+    _count: number;
 
-    /** !!! */
-    // _color: Color;
+    /** Node color */
+    _color: Color;
 }
 
 export interface IIterator<ValueType> {
@@ -88,7 +88,7 @@ export interface IIterator<ValueType> {
     tree: ITree<ValueType>;
 
     /** We do not interface this */
-    // _stack: Stack<ValueType>
+    _stack: Stack<ValueType>
 
     /** Checks if the iterator is valid **investigate** */
     readonly valid: boolean;
