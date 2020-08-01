@@ -1,0 +1,7 @@
+{
+    "out": "docs",
+    "mode": "modules",
+    "readme": "./misc/README.md",
+    "plugin": "typedoc-plugin-markdown",
+    "tsconfig": "./tsconfig_doc.json"
+}
