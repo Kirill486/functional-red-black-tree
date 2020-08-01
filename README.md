@@ -29,9 +29,13 @@ var tree3 = tree2.insert(2, "bar");
 var tree4 = tree3.remove(1);
 ```
 
-[**Red Black Tree Api reference**](/docs/classes/_rbtreetree_.redblacktree.md)
+# API
 
-[**Red Black Tree Iterator reference**](/docs/classes/_rbtreeiterator_.redblacktreeiterator.md)
+[**Tree API reference**](/docs/interfaces/itree.md)
+
+[**Tree Iterator API reference**](/docs/interfaces/iiterator.md)
+
+[**Globals**](/docs/globals.md)
 
 # Fork
 

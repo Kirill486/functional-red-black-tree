@@ -7,8 +7,8 @@
     "declaration": true
   },
   "include": [
-    "./rbtree.ts",
-    "./**/*.ts"
+    "./libraryDefinitions.ts",
+    "./tbtreeTree.ts"
   ],
   "exclude": [
     "node_modules",
