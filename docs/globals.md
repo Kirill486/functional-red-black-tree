@@ -28,7 +28,7 @@
 
 Ƭ **ComparisonResult**: *-1 | 0 | 1*
 
-*Defined in [libraryDefinitions.ts:2](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L2)*
+*Defined in [libraryDefinitions.ts:2](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L2)*
 
 The same semantics as ```array.sort()```
 
@@ -38,7 +38,7 @@ ___
 
 Ƭ **FunctionCompatator**: *function*
 
-*Defined in [libraryDefinitions.ts:134](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L134)*
+*Defined in [libraryDefinitions.ts:134](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L134)*
 
 Comparison function, same semantics as ```array.sort()```
 
@@ -59,7 +59,7 @@ ___
 
 Ƭ **Stack**: *Array‹[INode](interfaces/inode.md)‹ValueType››*
 
-*Defined in [libraryDefinitions.ts:67](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L67)*
+*Defined in [libraryDefinitions.ts:67](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L67)*
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 Ƭ **VisitFunction**: *function*
 
-*Defined in [libraryDefinitions.ts:137](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L137)*
+*Defined in [libraryDefinitions.ts:137](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L137)*
 
 A function to execute for each node or each element
 
@@ -92,6 +92,6 @@ ___
 
 Ƭ **nodeKey**: *number*
 
-*Defined in [libraryDefinitions.ts:11](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L11)*
+*Defined in [libraryDefinitions.ts:11](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L11)*
 
 Tree stores data by number keys

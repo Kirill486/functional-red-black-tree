@@ -27,7 +27,7 @@
 
 • **_color**: *[Color](../enums/color.md)*
 
-*Defined in [libraryDefinitions.ts:86](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L86)*
+*Defined in [libraryDefinitions.ts:86](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L86)*
 
 Node color
 
@@ -37,9 +37,9 @@ ___
 
 • **_count**: *number*
 
-*Defined in [libraryDefinitions.ts:83](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L83)*
+*Defined in [libraryDefinitions.ts:83](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L83)*
 
-Node leaves count **investigate**
+Node leaves count
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **key**: *[nodeKey](../globals.md#nodekey)*
 
-*Defined in [libraryDefinitions.ts:71](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L71)*
+*Defined in [libraryDefinitions.ts:71](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L71)*
 
 The key associated to the node
 
@@ -57,7 +57,7 @@ ___
 
 • **left**: *[INode](inode.md)‹ValueType›*
 
-*Defined in [libraryDefinitions.ts:77](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L77)*
+*Defined in [libraryDefinitions.ts:77](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L77)*
 
 The left subtree of the node
 
@@ -67,7 +67,7 @@ ___
 
 • **right**: *[INode](inode.md)‹ValueType›*
 
-*Defined in [libraryDefinitions.ts:80](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L80)*
+*Defined in [libraryDefinitions.ts:80](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L80)*
 
 The right subtree of the node
 
@@ -77,6 +77,6 @@ ___
 
 • **value**: *ValueType*
 
-*Defined in [libraryDefinitions.ts:74](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L74)*
+*Defined in [libraryDefinitions.ts:74](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L74)*
 
 The value associated to the node

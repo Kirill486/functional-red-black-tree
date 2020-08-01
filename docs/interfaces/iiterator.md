@@ -35,7 +35,7 @@
 
 • **_stack**: *[Stack](../globals.md#stack)‹ValueType›*
 
-*Defined in [libraryDefinitions.ts:94](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L94)*
+*Defined in [libraryDefinitions.ts:94](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L94)*
 
 We do not interface this
 
@@ -45,7 +45,7 @@ ___
 
 • **clone**: *function*
 
-*Defined in [libraryDefinitions.ts:121](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L121)*
+*Defined in [libraryDefinitions.ts:121](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L121)*
 
 Returns a **new Iterator** that points at the same tree element
 
@@ -59,7 +59,7 @@ ___
 
 • **hasNext**: *boolean*
 
-*Defined in [libraryDefinitions.ts:112](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L112)*
+*Defined in [libraryDefinitions.ts:112](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L112)*
 
 If true, then the iterator is not at the end of the sequence
 
@@ -69,7 +69,7 @@ ___
 
 • **hasPrev**: *boolean*
 
-*Defined in [libraryDefinitions.ts:115](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L115)*
+*Defined in [libraryDefinitions.ts:115](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L115)*
 
 If true, then the iterator is not at the beginning of the sequence
 
@@ -79,7 +79,7 @@ ___
 
 • **index**: *number*
 
-*Defined in [libraryDefinitions.ts:109](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L109)*
+*Defined in [libraryDefinitions.ts:109](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L109)*
 
 Returns the position of this iterator in the sequence
 
@@ -89,7 +89,7 @@ ___
 
 • **key**: *number*
 
-*Defined in [libraryDefinitions.ts:103](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L103)*
+*Defined in [libraryDefinitions.ts:103](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L103)*
 
 The key of the item referenced by the iterator
 
@@ -99,7 +99,7 @@ ___
 
 • **next**: *function*
 
-*Defined in [libraryDefinitions.ts:130](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L130)*
+*Defined in [libraryDefinitions.ts:130](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L130)*
 
 Moves the iterator backward one element
 
@@ -113,9 +113,9 @@ ___
 
 • **node**: *[INode](inode.md)‹ValueType›*
 
-*Defined in [libraryDefinitions.ts:100](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L100)*
+*Defined in [libraryDefinitions.ts:100](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L100)*
 
-The value of the node at the iterator's current position. **investigate**
+The value of the node at the iterator's current position
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 • **prev**: *function*
 
-*Defined in [libraryDefinitions.ts:127](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L127)*
+*Defined in [libraryDefinitions.ts:127](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L127)*
 
 Advances the iterator to the next position
 
@@ -137,7 +137,7 @@ ___
 
 • **remove**: *function*
 
-*Defined in [libraryDefinitions.ts:124](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L124)*
+*Defined in [libraryDefinitions.ts:124](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L124)*
 
 reates a **new tree** with the **item that is pointed by the iterator** removed
 
@@ -151,7 +151,7 @@ ___
 
 • **tree**: *[ITree](itree.md)‹ValueType›*
 
-*Defined in [libraryDefinitions.ts:91](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L91)*
+*Defined in [libraryDefinitions.ts:91](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L91)*
 
 The tree associated to the iterator
 
@@ -161,7 +161,7 @@ ___
 
 • **update**: *function*
 
-*Defined in [libraryDefinitions.ts:118](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L118)*
+*Defined in [libraryDefinitions.ts:118](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L118)*
 
 Creates a **new tree** with the **item that is pointed by the iterator** updated
 
@@ -181,9 +181,9 @@ ___
 
 • **valid**: *boolean*
 
-*Defined in [libraryDefinitions.ts:97](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L97)*
+*Defined in [libraryDefinitions.ts:97](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L97)*
 
-Checks if the iterator is valid **investigate**
+Checks if the iterator is valid
 
 ___
 
@@ -191,6 +191,6 @@ ___
 
 • **value**: *ValueType*
 
-*Defined in [libraryDefinitions.ts:106](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L106)*
+*Defined in [libraryDefinitions.ts:106](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L106)*
 
 The value of the item referenced by the iterator

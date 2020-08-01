@@ -38,7 +38,7 @@
 
 • **_compare**: *[FunctionCompatator](../globals.md#functioncompatator)*
 
-*Defined in [libraryDefinitions.ts:16](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L16)*
+*Defined in [libraryDefinitions.ts:16](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L16)*
 
 Comparison function, same semantics as ```array.sort()```
 
@@ -48,9 +48,9 @@ ___
 
 • **at**: *function*
 
-*Defined in [libraryDefinitions.ts:49](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L49)*
+*Defined in [libraryDefinitions.ts:49](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L49)*
 
-Finds an iterator starting at the given element, otherwise ***investigate*
+Finds an iterator starting at the given element, otherwise
 
 #### Type declaration:
 
@@ -68,7 +68,7 @@ ___
 
 • **begin**: *[IIterator](iiterator.md)‹ValueType›*
 
-*Defined in [libraryDefinitions.ts:34](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L34)*
+*Defined in [libraryDefinitions.ts:34](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L34)*
 
 An iterator pointing to the first element in the tree
 
@@ -78,7 +78,7 @@ ___
 
 • **end**: *[IIterator](iiterator.md)‹ValueType›*
 
-*Defined in [libraryDefinitions.ts:37](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L37)*
+*Defined in [libraryDefinitions.ts:37](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L37)*
 
 An iterator pointing to the last element in the tree
 
@@ -88,9 +88,9 @@ ___
 
 • **find**: *function*
 
-*Defined in [libraryDefinitions.ts:64](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L64)*
+*Defined in [libraryDefinitions.ts:64](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L64)*
 
-Returns an iterator pointing to the first item in the tree with key, otherwise **investigate**.
+Returns an iterator pointing to the first item in the tree with key, otherwise.
 
 #### Type declaration:
 
@@ -108,7 +108,7 @@ ___
 
 • **forEach**: *function*
 
-*Defined in [libraryDefinitions.ts:22](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L22)*
+*Defined in [libraryDefinitions.ts:22](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L22)*
 
 Walks a visit function over the nodes of the tree in order.
 
@@ -130,7 +130,7 @@ ___
 
 • **ge**: *function*
 
-*Defined in [libraryDefinitions.ts:52](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L52)*
+*Defined in [libraryDefinitions.ts:52](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L52)*
 
 Find the first item in the tree whose ```key is >= key```
 
@@ -150,7 +150,7 @@ ___
 
 • **get**: *function*
 
-*Defined in [libraryDefinitions.ts:40](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L40)*
+*Defined in [libraryDefinitions.ts:40](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L40)*
 
 Retrieves the value associated to the given key
 
@@ -170,7 +170,7 @@ ___
 
 • **gt**: *function*
 
-*Defined in [libraryDefinitions.ts:55](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L55)*
+*Defined in [libraryDefinitions.ts:55](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L55)*
 
 Finds the first item in the tree whose ```key is > key```
 
@@ -190,7 +190,7 @@ ___
 
 • **insert**: *function*
 
-*Defined in [libraryDefinitions.ts:43](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L43)*
+*Defined in [libraryDefinitions.ts:43](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L43)*
 
 Creates a **new tree** with the new pair inserted
 
@@ -211,7 +211,7 @@ ___
 
 • **keys**: *[nodeKey](../globals.md#nodekey)[]*
 
-*Defined in [libraryDefinitions.ts:25](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L25)*
+*Defined in [libraryDefinitions.ts:25](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L25)*
 
 A sorted array of all the keys in the tree
 
@@ -221,7 +221,7 @@ ___
 
 • **le**: *function*
 
-*Defined in [libraryDefinitions.ts:61](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L61)*
+*Defined in [libraryDefinitions.ts:61](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L61)*
 
 Finds the last item in the tree whose ```key is <= key```
 
@@ -241,7 +241,7 @@ ___
 
 • **length**: *number*
 
-*Defined in [libraryDefinitions.ts:31](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L31)*
+*Defined in [libraryDefinitions.ts:31](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L31)*
 
 The number of items in the tree
 
@@ -251,7 +251,7 @@ ___
 
 • **lt**: *function*
 
-*Defined in [libraryDefinitions.ts:58](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L58)*
+*Defined in [libraryDefinitions.ts:58](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L58)*
 
 Finds the last item in the tree whose ```key is < key```
 
@@ -271,7 +271,7 @@ ___
 
 • **remove**: *function*
 
-*Defined in [libraryDefinitions.ts:46](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L46)*
+*Defined in [libraryDefinitions.ts:46](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L46)*
 
 Creates a **new tree** with the **first item with given key** removed
 
@@ -291,7 +291,7 @@ ___
 
 • **root**: *[INode](inode.md)‹ValueType›*
 
-*Defined in [libraryDefinitions.ts:19](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L19)*
+*Defined in [libraryDefinitions.ts:19](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L19)*
 
 The root node of the tree
 
@@ -301,6 +301,6 @@ ___
 
 • **values**: *ValueType[]*
 
-*Defined in [libraryDefinitions.ts:28](https://github.com/Kirill486/functional-red-black-tree/blob/450d033/libraryDefinitions.ts#L28)*
+*Defined in [libraryDefinitions.ts:28](https://github.com/Kirill486/functional-red-black-tree/blob/4069834/libraryDefinitions.ts#L28)*
 
 An array array of all the values in the tree
