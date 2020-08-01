@@ -48,4 +48,5 @@ I did not change any logic with a few exceptions I can count by fingers on my on
 # Version History
 
 **1.0.1** - Relese ```functional-red-black-tree2``` (typed red-black-tree version)
+
 **1.1.0** - Updated documentation, version history. Linter added.
