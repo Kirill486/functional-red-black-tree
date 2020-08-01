@@ -1,11 +1,9 @@
-"use strict"
+import {createRBTree as createTree} from '../rbtree'
 
-var createTree = require("../rbtree.js")
+let t = createTree()
 
-var t = createTree()
-
-var s = Date.now()
-for(var i=0; i<100000; ++i) {
+const s = Date.now()
+for(let i=0; i<100000; ++i) {
   t = t.insert(Math.random(), Math.random())
 }
 console.log(Date.now() - s)

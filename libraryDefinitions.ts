@@ -14,7 +14,7 @@ export interface ITree<ValueType> {
 
     /** Comparison function, same semantics as ```array.sort()``` */
     readonly _compare: FunctionCompatator;
-    
+
     /** The root node of the tree */
     root: INode<ValueType>;
 
@@ -64,7 +64,7 @@ export interface ITree<ValueType> {
     find: (key: nodeKey) => IIterator<ValueType>;
 }
 
-export type Stack<ValueType> = Array<INode<ValueType>>
+export type Stack<ValueType> = INode<ValueType>[];
 
 export interface INode<ValueType>{
     /** The key associated to the node */
