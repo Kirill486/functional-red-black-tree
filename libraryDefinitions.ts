@@ -10,13 +10,16 @@ export enum Color {
 /** Tree stores data by number keys */
 export type nodeKey = number;
 
-export interface ITree<ValueType> {
+// Backwards compatibility
+export interface ITree<ValueType> extends GenericTree<number, ValueType> {};
+
+export interface GenericTree<KeyType, ValueType> {
 
     /** Comparison function, same semantics as ```array.sort()``` */
     readonly _compare: FunctionCompatator;
 
     /** The root node of the tree */
-    root: INode<ValueType>;
+    root: GenericNode<KeyType, ValueType>;
 
     /** Walks a visit function over the nodes of the tree in order. */
     forEach: (visit: VisitFunction, lo?: nodeKey, hi?: nodeKey) => any;
@@ -31,42 +34,44 @@ export interface ITree<ValueType> {
     readonly length: number;
 
     /** An iterator pointing to the first element in the tree */
-    readonly begin: IIterator<ValueType>;
+    readonly begin: GenericIterator<KeyType, ValueType>;
 
     /** An iterator pointing to the last element in the tree */
-    readonly end: IIterator<ValueType>;
+    readonly end: GenericIterator<KeyType, ValueType>;
 
     /** Retrieves the value associated to the given key */
     get: (key: nodeKey) => ValueType;
 
     /** Creates a **new tree** with the new pair inserted */
-    insert: (key: nodeKey, value: ValueType) => ITree<ValueType>;
+    insert: (key: nodeKey, value: ValueType) => GenericTree<KeyType, ValueType>;
 
     /** Creates a **new tree** with the **first item with given key** removed */
-    remove: (key: nodeKey) => ITree<ValueType>;
+    remove: (key: nodeKey) => GenericTree<KeyType, ValueType>;
 
     /** Finds an iterator starting at the given element, otherwise */
-    at: (idx: number) => IIterator<ValueType>;
+    at: (idx: number) => GenericIterator<KeyType, ValueType>;
 
     /** Find the first item in the tree whose ```key is >= key``` */
-    ge: (key: nodeKey) => IIterator<ValueType>;
+    ge: (key: nodeKey) => GenericIterator<KeyType, ValueType>;
 
     /** Finds the first item in the tree whose ```key is > key``` */
-    gt: (key: nodeKey) => IIterator<ValueType>;
+    gt: (key: nodeKey) => GenericIterator<KeyType, ValueType>;
 
     /** Finds the last item in the tree whose ```key is < key``` */
-    lt: (key: nodeKey) => IIterator<ValueType>;
+    lt: (key: nodeKey) => GenericIterator<KeyType, ValueType>;
 
     /** Finds the last item in the tree whose ```key is <= key``` */
-    le: (key: nodeKey) => IIterator<ValueType>;
+    le: (key: nodeKey) => GenericIterator<KeyType, ValueType>;
 
     /** Returns an iterator pointing to the first item in the tree with key, otherwise. */
-    find: (key: nodeKey) => IIterator<ValueType>;
+    find: (key: nodeKey) => GenericIterator<KeyType, ValueType>;
 }
 
-export type Stack<ValueType> = INode<ValueType>[];
+export type Stack<ValueType> = GenericNode<KeyType, ValueType>[];
 
-export interface INode<ValueType>{
+export interface INode<ValueType> extends GenericNode<number, ValueType> {};
+
+export interface GenericNode<KeyType, ValueType>{
     /** The key associated to the node */
     key: nodeKey;
 
@@ -74,10 +79,10 @@ export interface INode<ValueType>{
     value: ValueType;
 
     /** The left subtree of the node */
-    left: INode<ValueType>;
+    left: GenericNode<KeyType, ValueType>;
 
     /** The right subtree of the node */
-    right: INode<ValueType>;
+    right: GenericNode<KeyType, ValueType>;
 
     /** Node leaves count */
     _count: number;
@@ -86,18 +91,20 @@ export interface INode<ValueType>{
     _color: Color;
 }
 
-export interface IIterator<ValueType> {
+export interface IIterator<ValueType> extends GenericIterator<number, ValueType> {};
+
+export interface GenericIterator<KeyType, ValueType> {
     /** The tree associated to the iterator */
-    tree: ITree<ValueType>;
+    tree: GenericTree<KeyType, ValueType>;
 
     /** We do not interface this */
-    _stack: Stack<ValueType>
+    _stack: Stack<ValueType>;
 
     /** Checks if the iterator is valid */
     readonly valid: boolean;
 
     /** The value of the node at the iterator's current position */
-    readonly node: INode<ValueType>;
+    readonly node: GenericNode<KeyType, ValueType>;
 
     /** The key of the item referenced by the iterator */
     readonly key: number;
@@ -115,13 +122,13 @@ export interface IIterator<ValueType> {
     readonly hasPrev: boolean;
 
     /** Creates a **new tree** with the **item that is pointed by the iterator** updated */
-    update: (value: ValueType) => ITree<ValueType>;
+    update: (value: ValueType) => GenericTree<KeyType, ValueType>;
 
     /** Returns a **new Iterator** that points at the same tree element */
-    clone: () => IIterator<ValueType>;
+    clone: () => GenericIterator<KeyType, ValueType>;
 
     /** reates a **new tree** with the **item that is pointed by the iterator** removed */
-    remove: () => ITree<ValueType>;
+    remove: () => GenericTree<KeyType, ValueType>;
 
     /** Advances the iterator to the next position */
     prev: () => void;
