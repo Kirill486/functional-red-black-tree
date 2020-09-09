@@ -47,7 +47,7 @@ function checkTree(tree, t) {
   t.equals(r[1], tree.length, "tree length")
 }
 
-tape("insert()", (t) => {
+tape("insert()", (t: tape.Test) => {
   const t1 = makeTree()
 
   let u = t1
