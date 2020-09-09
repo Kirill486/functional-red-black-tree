@@ -142,3 +142,6 @@ export type FunctionCompatator = (a: number, b: number) => ComparisonResult;
 
 /** A function to execute for each node or each element */
 export type VisitFunction = <ValueType>(key: nodeKey, value: ValueType) => any;
+
+/** A function to convert custom key type to number */
+export type HashFunction<KeyType> = (entity: KeyType) => number;
