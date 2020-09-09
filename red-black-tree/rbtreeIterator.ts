@@ -1,4 +1,4 @@
-import { ITree, Color, INode, Stack, IIterator } from "./libraryDefinitions"
+import { ITree, Color, INode, Stack, IIterator } from "../libraryDefinitions"
 import { cloneNode, recount, repaint, RBNode } from "./rbtreeNode"
 import { RedBlackTree } from "./rbtreeTree"
 

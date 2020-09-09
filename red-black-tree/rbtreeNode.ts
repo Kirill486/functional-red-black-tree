@@ -1,4 +1,4 @@
-import { Color, INode, nodeKey } from "./libraryDefinitions"
+import { Color, INode, nodeKey } from "../libraryDefinitions"
 
 export class RBNode<ValueType> implements INode<ValueType> {
     _color: Color;
